@@ -3,12 +3,20 @@
   "description": "replaced-by-user-input",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
   "devDependencies": {
     "jest": "^24.7.1",
     "prettier": "2.0.5"
   },
   "scripts": {
+    "build": "sam build",
+    "env": "jq -r '.nightBedRoomAirConditioner | to_entries[] | \"ParameterKey=\\(.key),ParameterValue=\\(.value) \"' env.json",
+    "local": "sam local invoke nightBedRoomAirConditioner --parameter-overrides \"$(npm run env)\"",
+    "start": "npm rum build && npm run local",
+    "deploy:sam": "sam deploy --parameter-overrides \"$(npm run env)\"",
+    "deploy": "npm run build && npm run deploy:sam",
     "test": "jest"
   }
 }
