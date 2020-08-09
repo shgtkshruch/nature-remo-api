@@ -25,6 +25,8 @@ Parameters:
     Type: String
   airTemperature:
     Type: String
+  slackWebhook:
+    Type: String
 
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
@@ -55,3 +57,4 @@ Resources:
           HOT: !Ref hot
           COLD: !Ref cold
           AIR_TEMPERATURE: !Ref airTemperature
+          SLACK_WEBHOOK: !Ref slackWebhook

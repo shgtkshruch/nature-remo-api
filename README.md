@@ -25,7 +25,8 @@ touch env.json
   "deviceId": "***",
   "hot": 30,
   "cold": 25,
-  "airTemperature": 27
+  "airTemperature": 27,
+  "slackWebhook": "***
 }
 ```
 
