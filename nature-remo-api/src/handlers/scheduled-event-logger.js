@@ -1,25 +1,16 @@
-/**
- * A Lambda function that logs the payload received from a CloudWatch scheduled event.
- */
 const AIRCON_ID = process.env.AIRCON_ID;
 const DEVICE_ID = process.env.DEVICE_ID;
 const HOT = parseInt(process.env.HOT, 10);
 const COLD = parseInt(process.env.COLD, 10);
 const AIR_TEMPERATURE = process.env.AIR_TEMPERATURE;
 
-const { getDevices } = require('../api/getDevices');
+const { getTemperature } = require('../api/getTemperature');
 const { turnOnAircon } = require('../api/turnOnAircon');
 const { turnOffAircon } = require('../api/turnOffAircon');
 
 exports.nightBedRoomAirConditioner = async (event, context) => {
-  // All log statements are written to CloudWatch by default. For more information, see
-  // https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-logging.html
-
   let res;
-
-  const devices = await getDevices();
-  const device = devices.filter((device) => device.id === DEVICE_ID)[0];
-  const temperature = device.newest_events.te.val;
+  const temperature = await getTemperature(DEVICE_ID);
 
   switch (true) {
     case (temperature >= HOT):
