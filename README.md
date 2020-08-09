@@ -22,14 +22,12 @@ touch env.json
 
 ```env.json
 {
-  "nightBedRoomAirConditioner": {
-    "natureRemoAccessToken": "***",
-    "airconId": "***",
-    "deviceId": "***",
-    "hot": 30,
-    "cold": 25,
-    "airTemperature": 27
-  }
+  "natureRemoAccessToken": "***",
+  "airconId": "***",
+  "deviceId": "***",
+  "hot": 30,
+  "cold": 25,
+  "airTemperature": 27
 }
 ```
 
