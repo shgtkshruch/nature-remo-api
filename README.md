@@ -4,9 +4,15 @@
 
 開発やデプロイに関するコードは、`nature-remo-api` ディレクトリ以下で実行してください。
 
-## 関数
+## Tech
+- [AWS サーバーレスアプリケーションモデル](https://aws.amazon.com/jp/serverless/sam/)
+- [AWS Lambda](https://aws.amazon.com/jp/lambda/)
+- [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)
 
-- `nightBedRoomAirConditioner`: 夜間に自動でエアコンを動かす関数。暑かったら ON, 涼しくなったら OFF にする
+## Functions
+
+- `nightBedRoomAirConditioner`  
+  夜間に自動でエアコンを動かす関数。暑かったら ON, 涼しくなったら OFF にする
 
 ## Env
 
@@ -37,7 +43,7 @@ npm start
 
 ## Deploy
 
-ビルド後に関数を AWS　Lambda へデプロイ。
+ビルド後に関数を AWS Lambda へデプロイ。
 
 ```sh
 npm run deploy
