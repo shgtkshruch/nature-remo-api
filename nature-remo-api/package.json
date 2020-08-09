@@ -11,6 +11,9 @@
     "prettier": "2.0.5"
   },
   "scripts": {
+    "build": "sam build",
+    "local": "sam local invoke nightBedRoomAirConditioner --env-vars env.json",
+    "start": "npm rum build && npm run local",
     "test": "jest"
   }
 }

@@ -37,3 +37,7 @@ Resources:
         Variables:
           NATURE_REMO_ACCESS_TOKEN:
           AIRCON_ID:
+          DEVICE_ID:
+          HOT:
+          COLD:
+          AIR_TEMPERATURE:
