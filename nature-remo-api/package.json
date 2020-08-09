@@ -3,7 +3,9 @@
   "description": "replaced-by-user-input",
   "version": "0.0.1",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
   "devDependencies": {
     "jest": "^24.7.1",
     "prettier": "2.0.5"
