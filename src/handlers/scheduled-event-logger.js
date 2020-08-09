@@ -7,26 +7,28 @@ const AIR_TEMPERATURE = process.env.AIR_TEMPERATURE;
 const { getTemperature } = require('../api/getTemperature');
 const { turnOnAircon } = require('../api/turnOnAircon');
 const { turnOffAircon } = require('../api/turnOffAircon');
+const { slackNotify } = require('../utils/slackNotify')
 
 exports.nightBedRoomAirConditioner = async (event, context) => {
-  let res;
+  let res = {};
   const temperature = await getTemperature(DEVICE_ID);
 
   switch (true) {
     case (temperature >= HOT):
-      log(`[Temperature ${temperature}℃]: Turn on air conditoner`);
       res = await turnOnAircon(AIRCON_ID, AIR_TEMPERATURE);
+      res.message = `[Temperature ${temperature}℃]: Turn on air conditoner`;
       break;
     case (temperature <= COLD):
-      log(`[Temperature ${temperature}℃]: Turn off air conditoner`);
       res = await turnOffAircon(AIRCON_ID);
+      res.message = `[Temperature ${temperature}℃]: Turn on air conditoner`;
       break;
     default:
-      res = `[Temperature ${temperature}℃]: It's just the right room temperature`;
+      res.message = `[Temperature ${temperature}℃]: It's just the right room temperature`;
       break;
   }
 
   log(res);
+  await slackNotify(res.message)
 };
 
 const log = (logObj) => (console.dir(logObj, { depth: 10 }) );
