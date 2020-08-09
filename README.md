@@ -1,5 +1,52 @@
 # nature-remo-api
 
+[Nature Remo Cloud API](https://developer.nature.global/) を利用して、家電を自動化するスクリプト。
+
+## Tech
+- [AWS サーバーレスアプリケーションモデル](https://aws.amazon.com/jp/serverless/sam/)
+- [AWS Lambda](https://aws.amazon.com/jp/lambda/)
+- [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)
+
+## Functions
+
+- `nightBedRoomAirConditioner`  
+  夜間に自動でエアコンを動かす関数。暑かったら ON, 涼しくなったら OFF にする
+
+## Env
+
+```sh
+touch env.json
+```
+
+```env.json
+{
+  "natureRemoAccessToken": "***",
+  "airconId": "***",
+  "deviceId": "***",
+  "hot": 30,
+  "cold": 25,
+  "airTemperature": 27
+}
+```
+
+## Dev
+
+ビルド後にローカルで Lambda 関数を実行。
+
+```sh
+npm start
+```
+
+## Deploy
+
+ビルド後に関数を AWS Lambda へデプロイ。
+
+```sh
+npm run deploy
+```
+
+## SAM
+
 This project contains source code and supporting files for a serverless application that you can deploy with the AWS Serverless Application Model (AWS SAM) command line interface (CLI). It includes the following files and folders:
 
 - `src` - Code for the application's Lambda function.
@@ -19,7 +66,7 @@ To get started, see the following:
 * [VS Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html)
 * [Visual Studio](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/welcome.html)
 
-## Deploy the sample application
+## Deploy the sample application  
 
 The AWS SAM CLI is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses Docker to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
 
