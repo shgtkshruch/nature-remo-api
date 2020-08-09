@@ -7,9 +7,9 @@ const HOT = parseInt(process.env.HOT, 10);
 const COLD = parseInt(process.env.COLD, 10);
 const AIR_TEMPERATURE = process.env.AIR_TEMPERATURE;
 
-const { getDevices } = require('../nature-remo/getDevices');
-const { turnOnAircon } = require('../nature-remo/turnOnAircon');
-const { turnOffAircon } = require('../nature-remo/turnOffAircon');
+const { getDevices } = require('../api/getDevices');
+const { turnOnAircon } = require('../api/turnOnAircon');
+const { turnOffAircon } = require('../api/turnOffAircon');
 
 exports.nightBedRoomAirConditioner = async (event, context) => {
   // All log statements are written to CloudWatch by default. For more information, see
