@@ -1,4 +1,4 @@
 .envrc
 .aws-sam
-nature-remo-api/env.json
+env.json
 node_modules
