@@ -33,3 +33,6 @@ Resources:
             Schedule: cron(0 * * * ? *)
       MemorySize: 128
       Timeout: 100
+      Environment:
+        Variables:
+          NATURE_REMO_ACCESS_TOKEN:
