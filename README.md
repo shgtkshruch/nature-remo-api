@@ -2,10 +2,11 @@
 
 [Nature Remo Cloud API](https://developer.nature.global/) を利用して、家電を自動化するスクリプト。
 
-## Tech
+## Tech Stacks
 - [AWS サーバーレスアプリケーションモデル](https://aws.amazon.com/jp/serverless/sam/)
 - [AWS Lambda](https://aws.amazon.com/jp/lambda/)
 - [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)
+- [Slack Webhooks](https://api.slack.com/messaging/webhooks)
 
 ## Functions
 
