@@ -20,7 +20,7 @@ exports.nightBedRoomAirConditioner = async (event, context) => {
       break;
     case (temperature <= COLD):
       res = await turnOffAircon(AIRCON_ID);
-      res.message = `[Temperature ${temperature}℃]: Turn on air conditoner`;
+      res.message = `[Temperature ${temperature}℃]: Turn off air conditoner`;
       break;
     default:
       res.message = `[Temperature ${temperature}℃]: It's just the right room temperature`;
