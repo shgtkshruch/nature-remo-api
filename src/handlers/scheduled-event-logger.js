@@ -7,7 +7,7 @@ const AIR_TEMPERATURE = process.env.AIR_TEMPERATURE;
 const { getTemperature } = require('../api/getTemperature');
 const { turnOnAircon } = require('../api/turnOnAircon');
 const { turnOffAircon } = require('../api/turnOffAircon');
-const { slackNotify } = require('../utils/slackNotify')
+const { slackNotify } = require('../utils/slackNotify');
 
 exports.nightBedRoomAirConditioner = async (event, context) => {
   let res = {};
@@ -28,7 +28,7 @@ exports.nightBedRoomAirConditioner = async (event, context) => {
   }
 
   log(res);
-  await slackNotify(res.message)
+  await slackNotify(res.message);
 };
 
-const log = (logObj) => (console.dir(logObj, { depth: 10 }) );
+const log = (logObj) => ( console.dir(logObj, { depth: 10 }) );
