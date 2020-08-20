@@ -8,12 +8,17 @@ const { getTemperature } = require('../api/getTemperature');
 const { turnOnAircon } = require('../api/turnOnAircon');
 const { turnOffAircon } = require('../api/turnOffAircon');
 const { slackNotify } = require('../utils/slackNotify');
+const { isCronDone } = require('../utils/isCronDone');
 
 exports.nightBedRoomAirConditioner = async (event, context) => {
   let res = {};
   const temperature = await getTemperature(DEVICE_ID);
 
   switch (true) {
+    case (isCronDone()):
+      res = await turnOffAircon(AIRCON_ID);
+      res.message = `[Temperature ${temperature}℃]: Cron job is done`;
+      break;
     case (temperature >= HOT):
       res = await turnOnAircon(AIRCON_ID, AIR_TEMPERATURE);
       res.message = `[Temperature ${temperature}℃]: Turn on air conditoner`;
