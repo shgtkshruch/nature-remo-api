@@ -1,6 +1,7 @@
-const { isAfter, set } = require('date-fns');
+const { isAfter, set, sub } = require('date-fns');
 
 exports.isCronDone = () => {
-  const endTime = set(new Date(), { hours: 23 });
+  const cronEndTime = set(new Date(), { hours: 23 });
+  const endTime = sub(cronEndTime, { minutes: 10 });
   return isAfter(new Date(), endTime);
 };
