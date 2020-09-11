@@ -19,21 +19,23 @@ async function fetchParameters() {
   return await ssm.getParameters(params).promise()
 }
 
-function getData(params, name) {
-  return params.Parameters.filter(p => p.Name === name )[0].Value
+function getData(data, name) {
+  return data.Parameters.filter(p => p.Name === name )[0].Value
 }
 
 async function getConstants() {
-  params = params || await fetchParameters()
-  return {
-    ACCESS_TOKEN: getData(params, 'NatureRemoAPIAccessToken'),
-    AIR_TEMPERATURE: getData(params, 'NatureRemoAirTemperature'),
-    AIRCON_ID: getData(params, 'NatureRemoAirconID'),
+  if (params) return params
+
+  data = await fetchParameters()
+  return params = {
+    ACCESS_TOKEN: getData(data, 'NatureRemoAPIAccessToken'),
+    AIR_TEMPERATURE: getData(data, 'NatureRemoAirTemperature'),
+    AIRCON_ID: getData(data, 'NatureRemoAirconID'),
     BASE_URL: "https://api.nature.global/1",
-    DEVICE_ID: getData(params, 'NatureRemoDeviceID'),
-    HOT: getData(params, 'NatureRemoHotTemperature'),
-    COLD: getData(params, 'NatureRemoColdTemperature'),
-    SLACK_WEBHOOK: getData(params, 'NatureRemoSlackWebhookURL')
+    DEVICE_ID: getData(data, 'NatureRemoDeviceID'),
+    HOT: getData(data, 'NatureRemoHotTemperature'),
+    COLD: getData(data, 'NatureRemoColdTemperature'),
+    SLACK_WEBHOOK: getData(data, 'NatureRemoSlackWebhookURL')
   }
 }
 
