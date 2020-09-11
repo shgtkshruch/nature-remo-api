@@ -1,7 +1,8 @@
 const fetch = require("node-fetch");
-const { constants } = require('./constants');
+const { loadConfig } = require('./constants');
 
 exports.getSignales = async (applianceId) => {
+  const constants = await loadConfig()
   const res = await fetch(`${constants.BASE_URL}/appliances/${applianceId}/signals`, {
     method: "GET",
     headers: {

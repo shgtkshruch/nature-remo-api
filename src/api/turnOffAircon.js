@@ -1,7 +1,8 @@
 const fetch = require("node-fetch");
-const { constants } = require('./constants');
+const { loadConfig } = require('./constants');
 
 exports.turnOffAircon = async (applianceId) => {
+  const constants = await loadConfig()
   const endpoint = `${constants.BASE_URL}/appliances/${applianceId}/aircon_settings`;
   const params = new URLSearchParams();
   params.append("appliance", applianceId);

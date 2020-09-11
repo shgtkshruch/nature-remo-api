@@ -12,22 +12,6 @@ Description: >-
 Transform:
 - AWS::Serverless-2016-10-31
 
-Parameters:
-  natureRemoAccessToken:
-    Type: String
-  airconId:
-    Type: String
-  deviceId:
-    Type: String
-  hot:
-    Type: String
-  cold:
-    Type: String
-  airTemperature:
-    Type: String
-  slackWebhook:
-    Type: String
-
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:  
@@ -49,12 +33,3 @@ Resources:
             Schedule: cron(0/5 14-23 * * ? *)
       MemorySize: 128
       Timeout: 100
-      Environment:
-        Variables:
-          NATURE_REMO_ACCESS_TOKEN: !Ref natureRemoAccessToken
-          AIRCON_ID: !Ref airconId
-          DEVICE_ID: !Ref deviceId
-          HOT: !Ref hot
-          COLD: !Ref cold
-          AIR_TEMPERATURE: !Ref airTemperature
-          SLACK_WEBHOOK: !Ref slackWebhook

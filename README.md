@@ -5,6 +5,7 @@
 ## Tech Stacks
 - [AWS サーバーレスアプリケーションモデル](https://aws.amazon.com/jp/serverless/sam/)
 - [AWS Lambda](https://aws.amazon.com/jp/lambda/)
+- [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
 - [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)
 - [Slack Webhooks](https://api.slack.com/messaging/webhooks)
 
@@ -13,23 +14,6 @@
 - `nightBedRoomAirConditioner`  
   夜間に自動でエアコンを動かす関数。暑かったら ON, 涼しくなったら OFF にする
 
-## Env
-
-```sh
-touch env.json
-```
-
-```env.json
-{
-  "natureRemoAccessToken": "***",
-  "airconId": "***",
-  "deviceId": "***",
-  "hot": 30,
-  "cold": 25,
-  "airTemperature": 27,
-  "slackWebhook": "***
-}
-```
 
 ## Dev
 

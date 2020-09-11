@@ -1,9 +1,4 @@
-const AIRCON_ID = process.env.AIRCON_ID;
-const DEVICE_ID = process.env.DEVICE_ID;
-const HOT = parseInt(process.env.HOT, 10);
-const COLD = parseInt(process.env.COLD, 10);
-const AIR_TEMPERATURE = process.env.AIR_TEMPERATURE;
-
+const { loadConfig } = require('../api/constants');
 const { getTemperature } = require('../api/getTemperature');
 const { turnOnAircon } = require('../api/turnOnAircon');
 const { turnOffAircon } = require('../api/turnOffAircon');
@@ -11,20 +6,21 @@ const { slackNotify } = require('../utils/slackNotify');
 const { isCronDone } = require('../utils/isCronDone');
 
 exports.nightBedRoomAirConditioner = async (event, context) => {
+  const constants = await loadConfig()
   let res = {};
-  const temperature = await getTemperature(DEVICE_ID);
+  const temperature = await getTemperature(constants.DEVICE_ID);
 
   switch (true) {
     case (isCronDone()):
-      res = await turnOffAircon(AIRCON_ID);
+      res = await turnOffAircon(constants.AIRCON_ID);
       res.message = `[Temperature ${temperature}℃]: Cron job is done`;
       break;
-    case (temperature >= HOT):
-      res = await turnOnAircon(AIRCON_ID, AIR_TEMPERATURE);
+    case (temperature >= constants.HOT):
+      res = await turnOnAircon(constants.AIRCON_ID, constants.AIR_TEMPERATURE);
       res.message = `[Temperature ${temperature}℃]: Turn on air conditoner`;
       break;
-    case (temperature <= COLD):
-      res = await turnOffAircon(AIRCON_ID);
+    case (temperature <= constants.COLD):
+      res = await turnOffAircon(constants.AIRCON_ID);
       res.message = `[Temperature ${temperature}℃]: Turn off air conditoner`;
       break;
     default:
