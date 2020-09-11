@@ -30,6 +30,6 @@ Resources:
         CloudWatchEvent:
           Type: Schedule
           Properties:
-            Schedule: cron(0/5 14-23 * * ? *)
+            Schedule: cron(0/5 14-22 * * ? *)
       MemorySize: 128
       Timeout: 100
