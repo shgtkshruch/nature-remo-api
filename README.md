@@ -1,3 +1,5 @@
+![Deploy](https://github.com/shgtkshruch/nature-remo-api/workflows/Deploy/badge.svg?branch=master&event=push)
+
 # nature-remo-api
 
 [Nature Remo Cloud API](https://developer.nature.global/) を利用して、家電を自動化するスクリプト。
@@ -7,6 +9,7 @@
 - [AWS Lambda](https://aws.amazon.com/jp/lambda/)
 - [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
 - [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html)
+- [GitHub Actions](https://github.com/features/actions)
 - [Slack Webhooks](https://api.slack.com/messaging/webhooks)
 
 ## Functions
