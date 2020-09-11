@@ -14,10 +14,9 @@
   },
   "scripts": {
     "build": "sam build",
-    "env": "jq -r 'to_entries[] | \"ParameterKey=\\(.key),ParameterValue=\\(.value) \"' env.json",
-    "local": "sam local invoke nightBedRoomAirConditioner --parameter-overrides \"$(npm run env)\"",
+    "local": "sam local invoke nightBedRoomAirConditioner",
     "start": "npm rum build && npm run local",
-    "deploy:sam": "sam deploy --parameter-overrides \"$(npm run env)\"",
+    "deploy:sam": "sam deploy",
     "deploy": "npm run build && npm run deploy:sam",
     "test": "jest"
   }
