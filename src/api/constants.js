@@ -1,5 +1,5 @@
 const SSM = require('aws-sdk/clients/ssm');
-let params = null
+let paramsCache = null
 
 async function fetchParameters() {
   const ssm = new SSM()
@@ -16,27 +16,31 @@ async function fetchParameters() {
     WithDecryption: true
   }
   console.log('call AWS SSM API')
-  return await ssm.getParameters(params).promise()
+  const data = await ssm.getParameters(params).promise()
+  return generateParamsObject(data)
 }
 
-function getData(data, name) {
-  return data.Parameters.filter(p => p.Name === name )[0].Value
+function generateParamsObject(data) {
+  return data.Parameters.reduce((res, p) => {
+    res[p.Name] = p.Value
+    return res
+  }, {})
 }
 
-async function getConstants() {
-  if (params) return params
+async function loadConfig() {
+  if (paramsCache) return paramsCache
 
-  data = await fetchParameters()
-  return params = {
-    ACCESS_TOKEN: getData(data, 'NatureRemoAPIAccessToken'),
-    AIR_TEMPERATURE: getData(data, 'NatureRemoAirTemperature'),
-    AIRCON_ID: getData(data, 'NatureRemoAirconID'),
+  const params = await fetchParameters()
+  return paramsCache = {
+    ACCESS_TOKEN: params['NatureRemoAPIAccessToken'],
+    AIR_TEMPERATURE: params['NatureRemoAirTemperature'],
+    AIRCON_ID: params['NatureRemoAirconID'],
     BASE_URL: "https://api.nature.global/1",
-    DEVICE_ID: getData(data, 'NatureRemoDeviceID'),
-    HOT: getData(data, 'NatureRemoHotTemperature'),
-    COLD: getData(data, 'NatureRemoColdTemperature'),
-    SLACK_WEBHOOK: getData(data, 'NatureRemoSlackWebhookURL')
+    DEVICE_ID: params['NatureRemoDeviceID'],
+    HOT: params['NatureRemoHotTemperature'],
+    COLD: params['NatureRemoColdTemperature'],
+    SLACK_WEBHOOK: params['NatureRemoSlackWebhookURL']
   }
 }
 
-exports.loadConfig = getConstants
+exports.loadConfig = loadConfig
