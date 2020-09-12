@@ -23,9 +23,8 @@ Resources:
       Description: A Lambda function that manage bed room air conditioner
       Runtime: nodejs12.x
       Handler: src/handlers/scheduled-event-logger.nightBedRoomAirConditioner
-      # This property associates this Lambda function with a scheduled CloudWatch Event. For all available properties, see
-      # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#schedule
-      # This example runs every hour.
+      Policies:
+        - arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess
       Events:
         CloudWatchEvent:
           Type: Schedule
